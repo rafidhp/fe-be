@@ -5,7 +5,7 @@ const App = () => {
   const [data, setData] = useState();
 
   useEffect(() => {
-    axios.get('http://127.0.0.1:8000/api/data')
+    axios.get('https://febe.up.railway.app/api/data')
       .then(response => {
         setData(response.data.message);
       })
@@ -14,7 +14,7 @@ const App = () => {
 
   return (
     <div>
-      <h1>Data from Laravel API: {data}</h1>
+      <h1 style={"color: #000"}>Data from Laravel API: {data}</h1>
     </div>
   );
 };
