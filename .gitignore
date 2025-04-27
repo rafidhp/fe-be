@@ -4,7 +4,6 @@ frontend/.env
 
 backend/vendor
 backend/.env
-backend/storage
 backend/bootstrap/cache/
 
 .git/
