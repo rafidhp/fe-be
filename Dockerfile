@@ -1,0 +1,62 @@
+# build frontend using vite
+FROM node:18-alpine as build
+
+WORKDIR /app
+
+# copy package.json and package-lock.json
+COPY frontend/package*.json ./
+RUN npm install
+
+# build frontend 
+COPY frontend/ .
+RUN npm run build
+
+# backend setup
+FROM php:8.2-apache
+
+# install dependencies laravel
+RUN apt-get update && apt-get install -y \
+    libzip-dev \
+    libpng-dev \
+    libxml2-dev \
+    libonig-dev \
+    libjpeg-dev \
+    libfreetype6-dev \
+    libxml2-dev \
+    openssl \
+    unzip \
+    curl \
+    git \
+    docker-php-ext-install \
+    pdo_mysql \
+    zip
+
+# install composer
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+
+# copy apache config
+COPY backend/apache.conf /etc/apache2/sites-available/000-default.conf
+RUN a2enmod rewrite
+
+#set laravel working directory
+WORKDIR /var/www/html
+
+#copy backend files
+COPY backend/ ./
+
+# install laravel dependencies
+RUN composer install --no-dev --optimize-autoloader
+
+#build frontend assets
+COPY --from=build /app/dist /var/www/html/public/build
+
+#set permissions
+RUN chown -R www-data:www-data /var/www/html /var/www/html/storage /var/www/html/bootstrap/cache \
+    && chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache \
+    && chmod -R o+w /var/www/html/storage
+
+#expose port 80
+EXPOSE 80
+
+# start apache server
+CMD ["apache2-foreground"]
