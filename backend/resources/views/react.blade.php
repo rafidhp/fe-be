@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>React App</title>
-    {{-- <link href="{{ asset('static/css/main.css') }}" rel="stylesheet"> --}}
+    <link href="{{ asset('build/assets/index-D8b4DHJx.css') }}" rel="stylesheet">
 </head>
 <body>
     <div id="root"></div>
-    {{-- <script src="{{ asset('static/js/main.js') }}"></script> --}}
+    <script src="{{ asset('build/assets/index-DK-xQhXp.js') }}"></script>
 </body>
 </html>
