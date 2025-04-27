@@ -43,7 +43,8 @@ WORKDIR /var/www/html
 COPY backend/ ./
 
 # install laravel dependencies
-RUN composer install --no-dev --optimize-autoloader
+RUN composer clear-cache \
+    && composer install --no-dev --optimize-autoloader --no-scripts --prefer-dist
 
 #build frontend assets
 COPY --from=build /app/dist /var/www/html/public/build
