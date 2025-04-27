@@ -34,7 +34,8 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 # copy apache config
 COPY backend/apache.conf /etc/apache2/sites-available/000-default.conf
-RUN a2enmod rewrite
+RUN a2enmod rewrite \
+    && a2enmod headers
 
 #set laravel working directory
 WORKDIR /var/www/html
