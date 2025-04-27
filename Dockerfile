@@ -43,6 +43,12 @@ WORKDIR /var/www/html
 #copy backend files
 COPY backend/ ./
 
+# create necessary storage folders
+RUN mkdir -p storage/framework/{cache,sessions,views} \
+    && mkdir -p storage/logs \
+    && chown -R www-data:www-data storage \
+    && chmod -R 775 storage
+
 # install laravel dependencies
 RUN composer clear-cache \
     && composer install --no-dev --optimize-autoloader --no-scripts --prefer-dist
