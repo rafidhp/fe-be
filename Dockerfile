@@ -9,7 +9,7 @@ RUN npm install
 
 # build frontend 
 COPY frontend/ .
-RUN npm run build
+RUN npm run build --max-old-space-size=4096
 
 # backend setup
 FROM php:8.2-apache
@@ -27,9 +27,7 @@ RUN apt-get update && apt-get install -y \
     unzip \
     curl \
     git \
-    docker-php-ext-install \
-    pdo_mysql \
-    zip
+    && docker-php-ext-install pdo_mysql zip
 
 # install composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
