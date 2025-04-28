@@ -1,14 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>React App</title>
-    <link href="https://febe.up.railway.app/build/assets/index-D8b4DHJx.css" rel="stylesheet">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Laravel + React</title>
+
+    <!-- Jika menggunakan Laravel Vite plugin -->
+    @if (file_exists(public_path('build/manifest.json')))
+        <script type="module" src="/build/index.js"></script>
+        <link rel="stylesheet" href="/build/index.css">
+    @else
+        <!-- Fallback jika build tidak ada -->
+        <script>console.error('Vite build assets not found');</script>
+    @endif
 </head>
 <body>
-    <div id="root"></div>
-    <script type="module" src="https://febe.up.railway.app/build/assets/index-DK-xQhXp.js"></script>
+    <div id="app"></div>
 </body>
 </html>

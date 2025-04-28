@@ -7,5 +7,11 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     assetsDir: '',
+    manifest: true,
+    rollupOptions: {
+      output: {
+        manualChunks: undefined,
+      },
+    },
   }
 })
