@@ -58,8 +58,8 @@ COPY --from=build /app/dist /var/www/html/public/build
 
 #set permissions
 RUN mkdir -p /var/www/html/storage /var/www/html/bootstrap/cache \
-    && chown -R www-data:www-data /var/www/html /var/www/html/storage /var/www/html/bootstrap/cache \
-    && chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache \
+    && chown -R www-data:www-data /var/www/html /var/www/html/public /var/www/html/storage /var/www/html/bootstrap/cache \
+    && chmod -R 775 /var/www/html/public /var/www/html/storage /var/www/html/bootstrap/cache \
     && chmod -R o+w /var/www/html/storage
 
 #expose port 80
