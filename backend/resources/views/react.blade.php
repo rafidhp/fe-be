@@ -7,8 +7,8 @@
 
     <!-- Jika menggunakan Laravel Vite plugin -->
     @if (file_exists(public_path('build/manifest.json')))
-        <script type="module" src="/build/index.js"></script>
-        <link rel="stylesheet" href="/build/index.css">
+        <script type="module" src="/build/assets/index.js"></script>
+        <link rel="stylesheet" href="/build/assets/index.css">
     @else
         <!-- Fallback jika build tidak ada -->
         <script>console.error('Vite build assets not found');</script>
