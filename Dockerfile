@@ -56,6 +56,8 @@ RUN composer clear-cache \
 #build frontend assets
 COPY --from=build /app/dist /var/www/html/public/build
 
+COPY .htaccess /var/www/html/public/.htaccess
+
 #set permissions
 RUN mkdir -p /var/www/html/storage /var/www/html/bootstrap/cache \
     && chown -R www-data:www-data /var/www/html /var/www/html/public /var/www/html/storage /var/www/html/bootstrap/cache \
