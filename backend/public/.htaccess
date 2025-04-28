@@ -21,4 +21,26 @@
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [L]
+
+    # Set MIME Types
+    <IfModule mod_mime.c>
+    AddType text/css .css
+    AddType application/javascript .js
+    AddType application/javascript .mjs
+
+    # Jika perlu, tambahkan juga untuk file lain
+    AddType image/svg+xml .svg
+    AddType application/font-woff .woff
+    AddType application/font-woff2 .woff2
+    </IfModule>
+
+    # Force correct MIME type
+    <IfModule mod_headers.c>
+    <FilesMatch "\.css$">
+        Header set Content-Type "text/css"
+    </FilesMatch>
+    <FilesMatch "\.(js|mjs)$">
+        Header set Content-Type "application/javascript"
+    </FilesMatch>
+    </IfModule>
 </IfModule>
