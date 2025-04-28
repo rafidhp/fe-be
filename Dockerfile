@@ -67,7 +67,7 @@ RUN mkdir -p /var/www/html/storage /var/www/html/bootstrap/cache \
 #expose port 80
 EXPOSE 80
 
-COPY entrypoint.sh /usr/local/bin/
+COPY backend/entrypoint.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/entrypoint.sh
 
 # start apache server
