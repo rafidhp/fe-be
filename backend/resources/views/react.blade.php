@@ -9,6 +9,6 @@
 </head>
 <body>
     <div id="root"></div>
-    <script src="{{ secure_asset('build/assets/index-DK-xQhXp.js') }}"></script>
+    <script type="module" src="{{ secure_asset('build/assets/index-DK-xQhXp.js') }}"></script>
 </body>
 </html>
