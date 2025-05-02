@@ -7,7 +7,7 @@ export default defineConfig({
   build: {
     assetsDir: '',
     manifest: 'manifest.json',
-    outDir: '../backend/public/build',
+    outDir: 'dist',
     rollupOptions: {
       input: './src/main.jsx',
       output: {
