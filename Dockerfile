@@ -28,6 +28,7 @@ RUN apt-get update && apt-get install -y \
     curl \
     git \
     && docker-php-ext-install pdo_mysql zip
+    # && curl -I https://github.com
 
 # install composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
@@ -49,12 +50,16 @@ RUN mkdir -p storage/framework/{cache,sessions,views} \
     && chown -R www-data:www-data storage \
     && chmod -R 775 storage
 
+COPY backend/composer.json backend/composer.lock ./
+
 # install laravel dependencies
 RUN composer clear-cache \
+    && composer config --global secure-http false \
     && composer install --no-dev --optimize-autoloader --no-scripts --prefer-dist
 
 #build frontend assets
-COPY --from=build /app/dist /var/www/html/public/build
+COPY --from=build /app/dist/. /var/www/html/public/build/
+# RUN ls -lah /var/www/html/public/build/
 
 COPY backend/public/.htaccess /var/www/html/public/.htaccess
 
